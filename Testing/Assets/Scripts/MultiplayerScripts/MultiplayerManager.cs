@@ -49,7 +49,14 @@ public class MultiplayerManager : Photon.PunBehaviour {
 		if (PlayerManager.localPlayerInstance == null)
 		{
 			Debug.Log("MultiplayerManager: Instantiating player prefab");
-			PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+			GameObject gameObject = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+			if (!photonView.isMine)
+			{
+				Destroy(gameObject.GetComponent(typeof(Camera)));
+			}
+
+
+
 		}
 
 	}
