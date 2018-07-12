@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MultiplayerManager : Photon.PunBehaviour {
+public class MultiplayerManager : Photon.PunBehaviour
+{
 
 	#region Variables
 	public GameObject playerPrefab;
+	public GameObject playerCamera;
 
 	static public MultiplayerManager instance;
 	#endregion
@@ -15,7 +17,7 @@ public class MultiplayerManager : Photon.PunBehaviour {
 	{
 		instance = this;
 
-		if(playerPrefab == null)
+		if (playerPrefab == null)
 		{
 			Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
 			return;
@@ -50,13 +52,9 @@ public class MultiplayerManager : Photon.PunBehaviour {
 		{
 			Debug.Log("MultiplayerManager: Instantiating player prefab");
 			GameObject gameObject = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
-			if (!photonView.isMine)
-			{
-				Destroy(gameObject.GetComponent(typeof(Camera)));
-			}
-
-
-
+			GameObject camera = Instantiate(playerCamera, new Vector3(), Quaternion.identity);
+			camera.transform.parent = gameObject.transform;
+			camera.transform.localPosition = new Vector3(-0.69f, 3.89f, -8.46f);
 		}
 
 	}
