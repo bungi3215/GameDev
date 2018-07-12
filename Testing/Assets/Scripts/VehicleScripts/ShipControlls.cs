@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShipControlls : MonoBehaviour
+public class ShipControlls : Photon.MonoBehaviour
 {
 
     private GameObject gameData;
@@ -25,7 +25,10 @@ public class ShipControlls : MonoBehaviour
 
     void Update()
     {
-
+		if (!photonView.isMine)
+		{
+			return;
+		}
         /*****
         * Movement script
         *****/

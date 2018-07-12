@@ -29,6 +29,11 @@ public class PhotonLobby : Photon.PunBehaviour {
 		PhotonNetwork.automaticallySyncScene = false;
 	}
 
+	private void Start()
+	{
+		Connect();
+	}
+
 	#endregion
 
 	#region Public Methods
@@ -87,10 +92,7 @@ public class PhotonLobby : Photon.PunBehaviour {
 		CreateRoom();
 	}
 
-	public override void OnJoinedRoom()
-	{
-		Debug.Log("Lobby: Joined a room");
-	}
+
 
 	public override void OnDisconnectedFromPhoton()
 	{

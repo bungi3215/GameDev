@@ -20,9 +20,6 @@ public class MultiplayerManager : Photon.PunBehaviour {
 			Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
 			return;
 		}
-
-
-
 	}
 	#endregion
 
@@ -42,6 +39,19 @@ public class MultiplayerManager : Photon.PunBehaviour {
 	public override void OnPhotonPlayerDisconnected(PhotonPlayer otherPlayer)
 	{
 		Debug.Log("MultiplayerManager: " + otherPlayer.NickName + " disconnected");
+	}
+
+	public override void OnJoinedRoom()
+	{
+		Debug.Log("MultiplayerManager: Joined a room");
+
+
+		if (PlayerManager.localPlayerInstance == null)
+		{
+			Debug.Log("MultiplayerManager: Instantiating player prefab");
+			PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+		}
+
 	}
 
 	#endregion

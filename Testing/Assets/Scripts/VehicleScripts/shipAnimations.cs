@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shipAnimations : MonoBehaviour {
+public class shipAnimations : Photon.MonoBehaviour{
 
     public ParticleSystem thrustersForward;
     public ParticleSystem thrustersBackward;
@@ -15,6 +15,11 @@ public class shipAnimations : MonoBehaviour {
     // Update is called once per frame
 
     void Update () {
+
+		if (!photonView.isMine)
+		{
+			return;
+		}
 
         var inside = GameManager.isInsideVehicle;
 
