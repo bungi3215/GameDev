@@ -51,7 +51,7 @@ public class MultiplayerManager : Photon.PunBehaviour
 		if (PlayerManager.localPlayerInstance == null)
 		{
 			Debug.Log("MultiplayerManager: Instantiating player prefab");
-			GameObject gameObject = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+			GameObject gameObject = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 50f), Quaternion.identity, 0);
 			GameObject camera = Instantiate(playerCamera, new Vector3(), Quaternion.identity);
 			camera.transform.parent = gameObject.transform;
 			camera.transform.localPosition = new Vector3(-0.69f, 3.89f, -8.46f);

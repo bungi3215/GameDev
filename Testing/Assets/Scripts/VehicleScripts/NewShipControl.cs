@@ -68,7 +68,6 @@ public class NewShipControl : Photon.MonoBehaviour {
 		}
 
 		textElement.text = shipRigidbody.velocity.ToString();
-		Debug.Log(shipRigidbody.velocity);
 
 		UpdateTransform();
 	}
