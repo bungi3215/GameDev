@@ -16,10 +16,10 @@ public class shipAnimations : Photon.MonoBehaviour{
 
     void Update () {
 
-		if (!photonView.isMine)
-		{
-			return;
-		}
+		//if (!photonView.isMine)
+		//{
+		//	return;
+		//}
 
         var inside = GameManager.isInsideVehicle;
 
