@@ -69,6 +69,8 @@ public class NewShipControl : Photon.MonoBehaviour {
 
 		textElement.text = shipRigidbody.velocity.ToString();
 		Debug.Log(shipRigidbody.velocity);
+
+		UpdateTransform();
 	}
 
 	void HandleRotation()
@@ -80,5 +82,13 @@ public class NewShipControl : Photon.MonoBehaviour {
 		transform.Rotate(0, 0, rX);
 		transform.Rotate(0, rZ, 0);
 		transform.Rotate(rY, 0, 0);
+	}
+
+
+	void UpdateTransform()
+	{
+		vecForward = transform.forward;
+		vecRight = transform.right;
+		vecUp = transform.up;
 	}
 }
