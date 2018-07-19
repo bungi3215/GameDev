@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shipAnimations : Photon.MonoBehaviour
+public class shipAnimations : Photon.PunBehaviour, IPunObservable
 {
 
 	public ParticleSystem thrustersForward;
@@ -12,6 +12,8 @@ public class shipAnimations : Photon.MonoBehaviour
 	public ParticleSystem thrustersLeft;
 	public ParticleSystem thrustersRight;
 	private GameObject gameData;
+
+
 
 	// Update is called once per frame
 
@@ -98,4 +100,65 @@ public class shipAnimations : Photon.MonoBehaviour
 			}
 		}
 	}
+
+	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		if (stream.isWriting)
+		{
+			stream.SendNext(thrustersForward.isPlaying);
+			stream.SendNext(thrustersBackward.isPlaying);
+			stream.SendNext(thrustersTop.isPlaying);
+			stream.SendNext(thrustersBottom.isPlaying);
+			stream.SendNext(thrustersLeft.isPlaying);
+			stream.SendNext(thrustersRight.isPlaying);
+		}
+		else
+		{
+			if ((bool)stream.ReceiveNext())
+				thrustersForward.Play();
+			else
+			{
+				thrustersForward.Stop();
+			}
+
+			if ((bool)stream.ReceiveNext())
+				thrustersBackward.Play();
+			else
+			{
+				thrustersBackward.Stop();
+			}
+
+
+			if ((bool)stream.ReceiveNext())
+				thrustersTop.Play();
+			else
+			{
+				thrustersTop.Stop();
+			}
+
+			if ((bool)stream.ReceiveNext())
+				thrustersBottom.Play();
+			else
+			{
+				thrustersBottom.Stop();
+			}
+
+			if ((bool)stream.ReceiveNext())
+				thrustersLeft.Play();
+			else
+			{
+				thrustersLeft.Stop();
+			}
+
+			if ((bool)stream.ReceiveNext())
+				thrustersRight.Play();
+			else
+			{
+				thrustersRight.Stop();
+			}
+
+		}
+
+	}
+
 }

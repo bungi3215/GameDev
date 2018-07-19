@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NewShipControl : Photon.MonoBehaviour {
+public class NewShipControl : Photon.PunBehaviour, IPunObservable {
 
 	public float verticalForce = 5f;
 	public float horizontalForce = 3f;
@@ -89,5 +89,10 @@ public class NewShipControl : Photon.MonoBehaviour {
 		vecForward = transform.forward;
 		vecRight = transform.right;
 		vecUp = transform.up;
+	}
+
+	void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+	{
+		
 	}
 }
